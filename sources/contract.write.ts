@@ -13,7 +13,7 @@ const Sleep = (ms: number)=> {
     });
 
     // open wallet v4 (notice the correct wallet version here)
-    const mnemonic = "excite tenant track brief card travel picture company suggest shed usage wire evolve advice lady inform key regular hockey pride health corn dish trigger"; // your 24 secret words (replace ... with the rest of the words)
+    const mnemonic = (process.env.mnemonics_test || "").toString();
     const key = await mnemonicToPrivateKey(mnemonic.split(" "));
     const wallet = WalletContractV4.create({ publicKey: key.publicKey, workchain: 0 });
     
@@ -22,11 +22,9 @@ const Sleep = (ms: number)=> {
     const walletSender = walletContract.sender(key.secretKey);
 
     // open the contract address
-    let owner = Address.parse("0QD8d5vx-7hiviuMMCU_xXHyg9PToCHgQB1MwcTkgG7dIbkt");
-    let init = await SampleTactContract.init(owner);
-    let contract_address = contractAddress(0, init);
-    let contract = await SampleTactContract.fromAddress(contract_address);
-    let contract_open = await client.open(contract);
+    let contract_address = Address.parse("kQBUWdjuAFMORI8nd4Nu9963AZLCef-Daesq_rv2FF81gcKe");
+    let contract = SampleTactContract.fromAddress(contract_address);
+    let contract_open = client.open(contract);
 
     // send message to contract
     // await contract_open.send(walletSender, { value: toNano("0.1") }, "increment");

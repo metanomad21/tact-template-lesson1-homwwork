@@ -4,6 +4,7 @@
     "build": "tact --config ./tact.config.json",
     "test": "jest",
     "deploy": "ts-node ./sources/contract.deploy.ts",
+    "deploy_rpc": "ts-node ./sources/contract.deploy_rpc.ts",
     "read": "ts-node ./sources/contract.read.ts",
     "write": "ts-node ./sources/contract.write.ts"
   },

@@ -24,20 +24,6 @@ contract SampleTactContract with Deployable {
         self.counter = (self.counter + v);
     }
 
-    fun sub(v: Int) {
-        
-        // Check sender
-        let ctx: Context = context();
-        require(ctx.sender == self.owner, "Invalid sender");
-        
-        // Update counter
-        if(self.counter > v){
-            self.counter = (self.counter - v);
-        }else{
-            self.counter = 0;
-        }
-    }
-
     receive(msg: Add) {
         self.add(msg.amount);
     }
@@ -47,16 +33,7 @@ contract SampleTactContract with Deployable {
         self.reply("incremented".asComment());
     }
 
-    receive("decrement") {
-        self.sub(1);
-        self.reply("decremented".asComment());
-    }
-
     get fun counter(): Int {
         return self.counter;
-    }
-
-    get fun getOwner(): Address {
-        return self.owner;
     }
 }

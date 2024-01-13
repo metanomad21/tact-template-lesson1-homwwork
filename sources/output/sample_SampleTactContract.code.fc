@@ -26,9 +26,26 @@
     return (($self'owner, $self'counter), ());
 }
 
+((slice, int), ()) $SampleTactContract$_fun_sub((slice, int) $self, int $v) impure inline_ref {
+    var (($self'owner, $self'counter)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    throw_unless(4429, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
+    if (($self'counter > $v)) {
+        $self'counter = ($self'counter - $v);
+    } else {
+        $self'counter = 0;
+    }
+    return (($self'owner, $self'counter), ());
+}
+
 ((slice, int), int) $SampleTactContract$_fun_counter((slice, int) $self) impure inline_ref {
     var (($self'owner, $self'counter)) = $self;
     return (($self'owner, $self'counter), $self'counter);
+}
+
+((slice, int), slice) $SampleTactContract$_fun_getOwner((slice, int) $self) impure inline_ref {
+    var (($self'owner, $self'counter)) = $self;
+    return (($self'owner, $self'counter), $self'owner);
 }
 
 ;;
@@ -49,6 +66,13 @@
     return (($self'owner, $self'counter), ());
 }
 
+((slice, int), ()) $SampleTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e((slice, int) $self) impure inline {
+    var ($self'owner, $self'counter) = $self;
+    ($self'owner, $self'counter)~$SampleTactContract$_fun_sub(1);
+    ($self'owner, $self'counter)~$SampleTactContract$_fun_reply(__gen_cell_comment_cef66999b58b98d2927b2b02a3a10ae193d666854757897dd911aeabf5224c09());
+    return (($self'owner, $self'counter), ());
+}
+
 (((slice, int)), ()) $SampleTactContract$_internal_binary_Deploy((slice, int) $self, (int) $deploy) impure inline {
     var ($self'owner, $self'counter) = $self;
     var ($deploy'queryId) = $deploy;
@@ -66,6 +90,12 @@ _ %counter() method_id(104984) {
     return res;
 }
 
+_ %getOwner() method_id(102025) {
+    var self = $SampleTactContract$_contract_load();
+    var res = self~$SampleTactContract$_fun_getOwner();
+    return res;
+}
+
 _ supported_interfaces() method_id {
     return (
         "org.ton.introspection.v0"H >> 128,
@@ -76,7 +106,7 @@ _ supported_interfaces() method_id {
 }
 
 _ get_abi_ipfs() method_id {
-    return "ipfs://QmYzQHN2n6D1zEBuJyBnJrnmhQWzgZWhaNppmwsAFW4kNi";
+    return "ipfs://Qmf23dBGnHHXaasFEG1phKKDVWfHw5C7xHBHWFh4SBnv7R";
 }
 
 _ lazy_deployment_completed() method_id {
@@ -121,6 +151,12 @@ _ lazy_deployment_completed() method_id {
         ;; Receive "increment" message
         if (text_op == 0xc4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae) {
             self~$SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae();
+            return (self, true);
+        }
+        
+        ;; Receive "decrement" message
+        if (text_op == 0x85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e) {
+            self~$SampleTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e();
             return (self, true);
         }
     }
