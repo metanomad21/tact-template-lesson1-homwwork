@@ -29,9 +29,14 @@ const Sleep = (ms: number)=> {
     let contract_open = await client.open(contract);
 
     // send message to contract
-    await contract_open.send(walletSender, { value: toNano(1) }, "increment");
+    // await contract_open.send(walletSender, { value: toNano("0.1") }, "increment");
     
-    await Sleep(3000);
-    console.log("Counter Value: " + (await contract_open.getCounter()));
+    // await Sleep(5000);
+    // console.log("After increment Counter Value: " + (await contract_open.getCounter()));
+
+    await contract_open.send(walletSender, { value: toNano("0.1") }, "decrement");
+    
+    await Sleep(5000);
+    console.log("After decrement Counter Value: " + (await contract_open.getCounter()));
 })();
 
