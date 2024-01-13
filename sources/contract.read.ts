@@ -11,7 +11,7 @@ import { prepareTactDeployment } from "@tact-lang/deployer";
     });
 
     // Parameters
-    let contarctAddr = Address.parse("kQBUWdjuAFMORI8nd4Nu9963AZLCef-Daesq_rv2FF81gcKe");
+    let contarctAddr = Address.parse("kQCYTUUHFSRZefVJZy_Ey5lX6qqekO-Y1Ef8XXzevt1iVopm");
     let client_open = client.open(SampleTactContract.fromAddress(contarctAddr));
 
     // Prepareing

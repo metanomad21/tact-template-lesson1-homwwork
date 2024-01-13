@@ -1,3 +1,12 @@
+;; Comment "Sub"
+cell __gen_cell_comment_d123eb815a87889ab98f0af8f5b70e41de2ea2bf8e5c7847622bb37c7440cc70() asm "B{b5ee9c7241010101000900000e0000000053756228544b11} B>boc PUSHREF";
+
+;; Comment "Mul"
+cell __gen_cell_comment_4f5bbf68b61b2e63e0c99902253d8fb7303386bef558df0b29df5225fc353c59() asm "B{b5ee9c7241010101000900000e000000004d756c575e7124} B>boc PUSHREF";
+
+;; Comment "Div"
+cell __gen_cell_comment_1da2910f8a22c651cf5f505bf6fdb6959ac3c1e9159bc3fca424387d627d8a79() asm "B{b5ee9c7241010101000900000e000000004469765e4e862e} B>boc PUSHREF";
+
 ;; Comment "incremented"
 cell __gen_cell_comment_3e96a74bf6f672d7e00d5d9c31c1437327e624b173365dc10e024c6410eff184() asm "B{b5ee9c7241010101001100001e00000000696e6372656d656e7465648430bf20} B>boc PUSHREF";
 

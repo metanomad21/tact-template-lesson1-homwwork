@@ -4,6 +4,21 @@ message Add {
     amount: Int as uint32;
 }
 
+message Sub {
+    amount1: Int as uint32;
+    amount2: Int as uint32;
+}
+
+message Mul {
+    amount1: Int as uint32;
+    amount2: Int as uint32;
+}
+
+message Div {
+    amount1: Int as uint32;
+    amount2: Int as uint32;
+}
+
 contract SampleTactContract with Deployable {
 
     owner: Address;
@@ -38,8 +53,39 @@ contract SampleTactContract with Deployable {
         }
     }
 
+    fun sub2(v: Int, s: Int): Int {
+        return v - s;
+    }
+
+    fun mul(v: Int, s: Int): Int {
+        return v * s;
+    }
+
+    fun div(v: Int, s: Int): Int  {
+        if(s != 0) {
+            return v / s;
+        }else{
+            return 0;
+        }
+    }
+
     receive(msg: Add) {
         self.add(msg.amount);
+    }
+
+    receive(msg: Sub) {
+        self.sub2(msg.amount1, msg.amount2);
+        self.reply("Sub".asComment());
+    }
+
+    receive(msg: Mul) {
+        self.mul(msg.amount1, msg.amount2);
+        self.reply("Mul".asComment());
+    }
+
+    receive(msg: Div) {
+        self.div(msg.amount1, msg.amount2);
+        self.reply("Div".asComment());
     }
 
     receive("increment") {

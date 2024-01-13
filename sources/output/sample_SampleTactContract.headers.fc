@@ -42,6 +42,15 @@ cell $DeployOk$_store_cell((int) v) inline;
 ;; $Add$_load
 (slice, ((int))) $Add$_load(slice sc_0) inline;
 
+;; $Sub$_load
+(slice, ((int, int))) $Sub$_load(slice sc_0) inline;
+
+;; $Mul$_load
+(slice, ((int, int))) $Mul$_load(slice sc_0) inline;
+
+;; $Div$_load
+(slice, ((int, int))) $Div$_load(slice sc_0) inline;
+
 ;; $SampleTactContract$_store
 builder $SampleTactContract$_store(builder build_0, (slice, int) v) inline;
 
@@ -71,6 +80,15 @@ builder $SampleTactContract$_store(builder build_0, (slice, int) v) inline;
 
 ;; $SampleTactContract$_fun_sub
 ((slice, int), ()) $SampleTactContract$_fun_sub((slice, int) $self, int $v) impure inline_ref;
+
+;; $SampleTactContract$_fun_sub2
+((slice, int), int) $SampleTactContract$_fun_sub2((slice, int) $self, int $v, int $s) impure inline_ref;
+
+;; $SampleTactContract$_fun_mul
+((slice, int), int) $SampleTactContract$_fun_mul((slice, int) $self, int $v, int $s) impure inline_ref;
+
+;; $SampleTactContract$_fun_div
+((slice, int), int) $SampleTactContract$_fun_div((slice, int) $self, int $v, int $s) impure inline_ref;
 
 ;; $SampleTactContract$_fun_counter
 ((slice, int), int) $SampleTactContract$_fun_counter((slice, int) $self) impure inline_ref;

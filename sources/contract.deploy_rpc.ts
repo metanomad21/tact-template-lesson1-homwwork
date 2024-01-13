@@ -30,9 +30,7 @@ import { prepareTactDeployment } from "@tact-lang/deployer";
 
     // Load required data
     let callingContract = contractAddress(0, init);
-    let data = init.data.toBoc();
-    let pkg = fs.readFileSync(path.resolve(__dirname, "output", packageName));
-    let deployAmount = toNano("0.1");
+    let deployAmount = toNano("0.08");
     let seqno: number = await walletContract.getSeqno();
     console.log("calling contract address ... ", callingContract)
     

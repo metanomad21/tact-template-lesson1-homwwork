@@ -12,6 +12,9 @@ PROGRAM{
   DECLPROC $DeployOk$_store
   DECLPROC $DeployOk$_store_cell
   DECLPROC $Add$_load
+  DECLPROC $Sub$_load
+  DECLPROC $Mul$_load
+  DECLPROC $Div$_load
   DECLPROC $SampleTactContract$_store
   DECLPROC $SampleTactContract$_load
   DECLPROC $StateInit$_not_null
@@ -22,6 +25,9 @@ PROGRAM{
   DECLPROC $global_send
   DECLPROC $SampleTactContract$_fun_add
   DECLPROC $SampleTactContract$_fun_sub
+  DECLPROC $SampleTactContract$_fun_sub2
+  DECLPROC $SampleTactContract$_fun_mul
+  DECLPROC $SampleTactContract$_fun_div
   DECLPROC $SampleTactContract$_fun_counter
   DECLPROC $SampleTactContract$_fun_getOwner
   DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
@@ -30,6 +36,9 @@ PROGRAM{
   DECLPROC $SampleTactContract$_fun_notify
   DECLPROC $DeployOk$_constructor_queryId
   DECLPROC $SampleTactContract$_internal_binary_Add
+  DECLPROC $SampleTactContract$_internal_binary_Sub
+  DECLPROC $SampleTactContract$_internal_binary_Mul
+  DECLPROC $SampleTactContract$_internal_binary_Div
   DECLPROC $SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae
   DECLPROC $SampleTactContract$_internal_text_85915b1bf5943fd2853bb660338acacfae39d1f735549cef922255a9945acc3e
   DECLPROC $SampleTactContract$_internal_binary_Deploy
@@ -121,6 +130,36 @@ PROGRAM{
     129 THROWIFNOT
     32 LDU
     SWAP
+  }>
+  $Sub$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    163694598 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    32 LDU
+    -ROT
+  }>
+  $Mul$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1610576521 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    32 LDU
+    -ROT
+  }>
+  $Div$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    271325691 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    32 LDU
+    32 LDU
+    -ROT
   }>
   $SampleTactContract$_store PROCINLINE:<{
     -ROT
@@ -311,6 +350,21 @@ PROGRAM{
       0 PUSHINT
     }>
   }>
+  $SampleTactContract$_fun_sub2 PROCREF:<{
+    SUB
+  }>
+  $SampleTactContract$_fun_mul PROCREF:<{
+    MUL
+  }>
+  $SampleTactContract$_fun_div PROCREF:<{
+    DUP
+    0 NEQINT
+    IFJMP:<{
+      DIV
+    }>
+    2DROP
+    0 PUSHINT
+  }>
   $SampleTactContract$_fun_counter PROCREF:<{
     DUP
   }>
@@ -360,6 +414,24 @@ PROGRAM{
   $SampleTactContract$_internal_binary_Add PROCINLINE:<{
     $SampleTactContract$_fun_add INLINECALLDICT
   }>
+  $SampleTactContract$_internal_binary_Sub PROCINLINE:<{
+    $SampleTactContract$_fun_sub2 INLINECALLDICT
+    DROP
+    B{b5ee9c7241010101000900000e0000000053756228544b11} B>boc PUSHREF
+    $SampleTactContract$_fun_reply INLINECALLDICT
+  }>
+  $SampleTactContract$_internal_binary_Mul PROCINLINE:<{
+    $SampleTactContract$_fun_mul INLINECALLDICT
+    DROP
+    B{b5ee9c7241010101000900000e000000004d756c575e7124} B>boc PUSHREF
+    $SampleTactContract$_fun_reply INLINECALLDICT
+  }>
+  $SampleTactContract$_internal_binary_Div PROCINLINE:<{
+    $SampleTactContract$_fun_div INLINECALLDICT
+    DROP
+    B{b5ee9c7241010101000900000e000000004469765e4e862e} B>boc PUSHREF
+    $SampleTactContract$_fun_reply INLINECALLDICT
+  }>
   $SampleTactContract$_internal_text_c4f8d72312edfdef5b7bec7833bdbb162d1511bd78a912aed0f2637af65572ae PROCINLINE:<{
     1 PUSHINT
     $SampleTactContract$_fun_add INLINECALLDICT
@@ -394,7 +466,7 @@ PROGRAM{
     209474421377847335869795010607481022628 PUSHINT
   }>
   get_abi_ipfs PROC:<{
-    x{697066733a2f2f516d6632336442476e4848586161734645473170684b4b445657664877354337784842485746683453426e763752} PUSHSLICE
+    x{697066733a2f2f516d6469654d52694e363648474a52746a467851675156456655386771533356544b7a4b6b71575542697a32656a} PUSHSLICE
   }>
   lazy_deployment_completed PROC:<{
     c4 PUSH
@@ -427,6 +499,36 @@ PROGRAM{
       $Add$_load INLINECALLDICT
       NIP
       $SampleTactContract$_internal_binary_Add INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    163694598 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Sub$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $SampleTactContract$_internal_binary_Sub INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1610576521 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Mul$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $SampleTactContract$_internal_binary_Mul INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    271325691 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Div$_load INLINECALLDICT
+      1 2 BLKDROP2
+      $SampleTactContract$_internal_binary_Div INLINECALLDICT
       TRUE
     }>
     DUP

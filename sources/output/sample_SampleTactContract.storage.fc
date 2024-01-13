@@ -64,6 +64,45 @@ cell $DeployOk$_store_cell((int) v) inline {
 }
 
 ;;
+;; Type: Sub
+;; Header: 0x09c1c806
+;; TLB: sub#09c1c806 amount1:uint32 amount2:uint32 = Sub
+;;
+
+(slice, ((int, int))) $Sub$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 163694598);
+    var v'amount1 = sc_0~load_uint(32);
+    var v'amount2 = sc_0~load_uint(32);
+    return (sc_0, (v'amount1, v'amount2));
+}
+
+;;
+;; Type: Mul
+;; Header: 0x5fff7289
+;; TLB: mul#5fff7289 amount1:uint32 amount2:uint32 = Mul
+;;
+
+(slice, ((int, int))) $Mul$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1610576521);
+    var v'amount1 = sc_0~load_uint(32);
+    var v'amount2 = sc_0~load_uint(32);
+    return (sc_0, (v'amount1, v'amount2));
+}
+
+;;
+;; Type: Div
+;; Header: 0x102c19fb
+;; TLB: div#102c19fb amount1:uint32 amount2:uint32 = Div
+;;
+
+(slice, ((int, int))) $Div$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 271325691);
+    var v'amount1 = sc_0~load_uint(32);
+    var v'amount2 = sc_0~load_uint(32);
+    return (sc_0, (v'amount1, v'amount2));
+}
+
+;;
 ;; Type: SampleTactContract
 ;;
 

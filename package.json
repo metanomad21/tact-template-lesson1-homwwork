@@ -6,7 +6,8 @@
     "deploy": "ts-node ./sources/contract.deploy.ts",
     "deploy_rpc": "ts-node ./sources/contract.deploy_rpc.ts",
     "read": "ts-node ./sources/contract.read.ts",
-    "write": "ts-node ./sources/contract.write.ts"
+    "write": "ts-node ./sources/contract.write.ts",
+    "random": "ts-node ./sources/contract.random.ts"
   },
   "dependencies": {
     "@tact-lang/compiler": "^1.1.5",
