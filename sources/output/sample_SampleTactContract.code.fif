@@ -322,14 +322,6 @@ PROGRAM{
     SENDRAWMSG
   }>
   $SampleTactContract$_fun_add PROCREF:<{
-    __tact_context_get INLINECALLDICT
-    s2 s3 XCHG
-    3 BLKDROP
-    s3 PUSH
-    4429 PUSHINT
-    s0 s2 XCHG
-    __tact_slice_eq_bits INLINECALLDICT
-    THROWANYIFNOT
     ADD
   }>
   $SampleTactContract$_fun_sub PROCREF:<{

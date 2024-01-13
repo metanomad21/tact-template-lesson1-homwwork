@@ -22,7 +22,7 @@ const Sleep = (ms: number)=> {
     const walletSender = walletContract.sender(key.secretKey);
 
     // open the contract address
-    let contract_address = Address.parse("kQCYTUUHFSRZefVJZy_Ey5lX6qqekO-Y1Ef8XXzevt1iVopm");
+    let contract_address = Address.parse("EQBFj26lWhIB9hZlL_TgvbLhFcFv7DzB1XbB-Uxgl36YXX1z");
     let contract = SampleTactContract.fromAddress(contract_address);
     let contract_open = client.open(contract);
 

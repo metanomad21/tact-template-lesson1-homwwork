@@ -20,8 +20,6 @@
 
 ((slice, int), ()) $SampleTactContract$_fun_add((slice, int) $self, int $v) impure inline_ref {
     var (($self'owner, $self'counter)) = $self;
-    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
-    throw_unless(4429, ( __tact_slice_eq_bits($self'owner, $ctx'sender) ));
     $self'counter = ($self'counter + $v);
     return (($self'owner, $self'counter), ());
 }

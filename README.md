@@ -39,10 +39,11 @@ To add new test files to contract you should create `*.spec.ts` files similar to
 `增加 Multiply/Divide 消息，并实现对应的接收处理方法
 新增消息函数：Sub、Mul、Div
 源文件：/sources/contract.tact
+合约地址：EQBFj26lWhIB9hZlL_TgvbLhFcFv7DzB1XbB-Uxgl36YXX1z
 
 `通过上一课的ts工程，将合约部署到链上，并向合约随机发送加减乘除指令，在区块浏览器查看交易信息
 调用脚本：sources/contract.random.ts
-交易tx:https://testnet.tonviewer.com/transaction/05e09c08f317f2c427b489f012d677d0be413b24ecc8d86cdff618dc8aecb309
+交易tx:https://testnet.tonviewer.com/transaction/720ec7d0070654d9d8745c70fed50272adb3565b05b759749b8544d628612066
 
 ## Licence
 
